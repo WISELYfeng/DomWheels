@@ -124,7 +124,17 @@ window.dom = {
     return elementList;
   },
   style: function style(node, name, config) {
-    node.style[name] = config;
+    if (arguments.length === 3) {
+      node.style[name] = config;
+    } else {
+      if (typeof name === 'string') {
+        return node.style[name];
+      } else if (name instanceof Object) {
+        for (var key in name) {
+          node.style[key] = name[key];
+        }
+      }
+    }
   },
   each: function each(node, fn) {
     var childNodes = node.childNodes;
@@ -162,7 +172,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52982" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "55779" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

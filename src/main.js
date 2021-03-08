@@ -1,7 +1,2 @@
-const dom1 = dom.find('#test')[0]
-
-dom.style(dom1,'color','red')
-
-dom.each(dom1,(n) => {
-    console.log(n)
-})
+const domList = dom.find('.paper')[0]
+dom.style(domList,{width:'50px',height:'50px',border:'1px solid red'})
