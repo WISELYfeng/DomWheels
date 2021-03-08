@@ -1,4 +1,9 @@
 window.dom = {
+    create(string){
+        const container = document.createElement("template")
+        container.innerHTML = string.trim()
+        return container.content.firstChild
+    },
     find(selector){
         const elementList = document.querySelectorAll(selector)
         return elementList
@@ -16,10 +21,15 @@ window.dom = {
             }
         }
     },
-    each(node,fn){
-        const {childNodes} = node
-        for(let i = 0; i < childNodes.length; i++){
-            fn.call(null,childNodes[i])
+    each(nodeList,fn){
+        for(let i = 0; i < nodeList.length; i++){
+            fn.call(null,nodeList[i])
         }
+    },
+    on(node,eventName,fn){
+        node.addEventListener(eventName,fn)
+    },
+    remove(node){
+        node.parentNode.removChild(node)
     }
 }
